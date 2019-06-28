@@ -45,7 +45,7 @@ urlinfo_t *parse_url(char *url)
     4. Use strchr to find the first colon in the URL.
     5. Set the port pointer to 1 character after the spot returned by strchr.
     6. Overwrite the colon with a '\0' so that we are just left with the hostname.
-  */
+  */ 
 
   slash = strchr(hostname, '/');
   if (slash)
@@ -67,7 +67,9 @@ urlinfo_t *parse_url(char *url)
     port = "80"; //default port number
   }
   
-  
+  urlinfo->hostname = hostname;
+  urlinfo->path = path;
+  urlinfo->port = port;
 
   return urlinfo;
 }
