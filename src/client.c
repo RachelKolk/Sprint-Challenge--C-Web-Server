@@ -90,9 +90,21 @@ int send_request(int fd, char *hostname, char *port, char *path)
   char request[max_request_size];
   int rv;
 
-  ///////////////////
-  // IMPLEMENT ME! //
-  ///////////////////
+  // Construct the HTTP request
+  int request_len = sprintf(request,
+    "GET /%s HTTP/1.1\n"
+    "Host: %s:%s\n"
+    "Connection: close\n",
+    path, hostname, port
+  );
+
+  // Send it
+  rv = send(fd, request, request_len, 0);
+
+  if (rv < 0)
+  {
+    perror("send");
+  } 
 
   return 0;
 }
