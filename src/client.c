@@ -31,6 +31,8 @@ urlinfo_t *parse_url(char *url)
   char *hostname = strdup(url);
   char *port;
   char *path;
+  char *slash;
+  char *colon;
 
   urlinfo_t *urlinfo = malloc(sizeof(urlinfo_t));
 
@@ -45,9 +47,27 @@ urlinfo_t *parse_url(char *url)
     6. Overwrite the colon with a '\0' so that we are just left with the hostname.
   */
 
-  ///////////////////
-  // IMPLEMENT ME! //
-  ///////////////////
+  slash = strchr(hostname, '/');
+  if (slash)
+  {
+    path = slash + 1;
+    *slash = '\0';
+  } else
+  {
+    path = "/";
+  }
+
+  colon = strchr(hostname, '/');
+  if (colon)
+  {
+    port = colon + 1;
+    *colon = '\0';
+  } else
+  {
+    port = "80"; //default port number
+  }
+  
+  
 
   return urlinfo;
 }
