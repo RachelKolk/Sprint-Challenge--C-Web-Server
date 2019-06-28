@@ -47,6 +47,20 @@ urlinfo_t *parse_url(char *url)
     6. Overwrite the colon with a '\0' so that we are just left with the hostname.
   */ 
 
+  // Stretch goal for URLS prepended with http:// or https://
+  if (strstr(url, "http://"))
+  {
+    hostname = strdup(url + 7);
+  } else if (strstr(url, "https://"))
+  {
+    hostname = strdup(url + 8);
+  } else
+  {
+    hostname = strdup(url);
+  }
+  
+  
+
   slash = strchr(hostname, '/');
   if (slash)
   {
